@@ -45,7 +45,11 @@ public class StaffManagementWindowController extends BaseController implements I
         Stage stage = (Stage) staffTable.getScene().getWindow();
         viewFactory.closeStage(stage);
     }
-
+    private ObservableList<User> getUserList(){
+        ObservableList<User> list = FXCollections.observableArrayList();
+        list.setAll(userDao.GetUser(viewFactory.getDbConnector().getDBConnection()).get(0));
+        return list;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,8 +62,7 @@ public class StaffManagementWindowController extends BaseController implements I
         emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
 
-        ObservableList<User> list = FXCollections.observableList(userDao.GetUser(viewFactory.getDbConnector().getDBConnection()));
-        list.addAll(userDao.GetUser(viewFactory.getDbConnector().getDBConnection()));
+        ObservableList<User> list = getUserList();
         staffTable.setItems(list);
 
 //        users = userDao.GetUser(viewFactory.getDbConnector().getDBConnection());
