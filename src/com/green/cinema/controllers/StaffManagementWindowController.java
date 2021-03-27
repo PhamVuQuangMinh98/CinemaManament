@@ -59,6 +59,7 @@ public class StaffManagementWindowController extends BaseController implements I
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
 
         ObservableList<User> list = FXCollections.observableList(userDao.GetUser(viewFactory.getDbConnector().getDBConnection()));
+        list.addAll(userDao.GetUser(viewFactory.getDbConnector().getDBConnection()));
         staffTable.setItems(list);
 
 //        users = userDao.GetUser(viewFactory.getDbConnector().getDBConnection());
