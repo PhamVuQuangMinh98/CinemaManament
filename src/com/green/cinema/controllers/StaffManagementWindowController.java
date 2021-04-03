@@ -57,17 +57,12 @@ public class StaffManagementWindowController extends BaseController implements I
     }
 
     public void initTable(){
-        userIdColumn = new TableColumn<>("UserID");
-        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("UserID"));
-        emailColumn = new TableColumn<>("Email");
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        ObservableList<User> list = getUserList();
-        staffTable.setItems(list);
-
-//        users = userDao.GetUser(viewFactory.getDbConnector().getDBConnection());
-//        for(User user: users){
-//            staffTable.getItems().add(user);
-//        }
+        users = userDao.GetUser(viewFactory.getDbConnector().getDBConnection());
+        for(User user: users){
+            staffTable.getItems().add(user);
+        }
     }
 }

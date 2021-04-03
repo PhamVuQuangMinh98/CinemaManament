@@ -7,4 +7,5 @@ module Cinema {
 
     opens com.green.cinema;
     opens com.green.cinema.controllers;
+    opens com.green.cinema.model;
 }
