@@ -67,6 +67,12 @@ public class ViewFactory {
         initializeStage(controller, true);
     }
 
+    public void showMovieManagementWindow(){
+        System.out.println("Show Movie Management window");
+        BaseController controller = new MovieManagementWindowController(this, "MovieManagementWindow.fxml");
+        initializeStage(controller, true);
+    }
+
     public void closeStage(Stage stage){
         stage.close();
     }

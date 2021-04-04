@@ -106,7 +106,6 @@ public class UserDao {
                 User user = new User();
                 user.setUserId(resultSet.getInt(1));
                 user.setEmail(resultSet.getString(2));
-                //user.setPassword(resultSet.getString(3));
                 users.add(user);
             }
         }catch (SQLException ex){

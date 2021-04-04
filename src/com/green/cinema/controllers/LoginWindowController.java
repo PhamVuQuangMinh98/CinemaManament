@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class LoginWindowController extends BaseController {
     Connection connection = new DBConnector().getDBConnection();
     UserDao userDao = new UserDao();
-    User user = new User();
+    User user = null;
     @FXML
     private Label emailLabel;
 
@@ -44,10 +44,12 @@ public class LoginWindowController extends BaseController {
     @FXML
     void loginButtonAction(ActionEvent event) {
         boolean loginSuccess = false;
-        user = userDao.FindUser(connection, emailTextField.getText(), passwordField.getText());
+        if(!"".equals(emailTextField.getText()) || !"".equals(emailTextField.getText())){
+            user = userDao.FindUser(connection, emailTextField.getText(), passwordField.getText());
 
-        if(user != null){
-            loginSuccess = true;
+            if(user.getUserId() != 0 && user.getEmail().equals(emailTextField.getText()) && user.getPassword().equals(passwordField.getText())){
+                loginSuccess = true;
+            }
         }
 
         if(loginSuccess){
